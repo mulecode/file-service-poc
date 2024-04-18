@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  java:
+    image: ghcr.io/mulecode/tool-set-java:1.5.0
+    working_dir: /opt/app
+    volumes:
+      - .m2:/root/.m2
+      - .:/opt/app
