@@ -12,5 +12,11 @@ import org.springframework.stereotype.Component;
 public class AppProperty {
 
     private String name;
+    private FeaturesFlags featuresFlags;
 
+    @Getter
+    @Setter
+    public static class FeaturesFlags {
+        private boolean enableCsvFileValidation;
+    }
 }
