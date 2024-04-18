@@ -47,10 +47,11 @@ public class UnitTestUtils {
         return Optional.of(givenOneObjectOf(type));
     }
 
-    public <T> Set<ConstraintViolation<T>> validateConstraings(T obj) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        return validator.validate(obj);
+    public <T> Set<ConstraintViolation<T>> validateConstrain(T obj) {
+        try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+            Validator validator = factory.getValidator();
+            return validator.validate(obj);
+        }
     }
 
     public Path getResourcePath(String fileName) {

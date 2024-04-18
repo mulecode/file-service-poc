@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "transport": {
+        "type": "string"
+      },
+      "topSpeed": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "name",
+      "transport",
+      "topSpeed"
+    ]
+  }
+}
