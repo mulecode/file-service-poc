@@ -6,6 +6,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.jeasy.random.EasyRandom;
 import org.springframework.mock.web.MockMultipartFile;
 
@@ -20,6 +21,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Getter
 public class UnitTestUtils {
 
