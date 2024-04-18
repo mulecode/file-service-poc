@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>uk.co.mulecode</groupId>
-    <artifactId>file-service</artifactId>
+    <artifactId>file-service-poc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>file-service-poc</name>
     <description>Example service for file processing</description>
