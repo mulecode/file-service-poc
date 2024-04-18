@@ -1,0 +1,15 @@
+logging:
+  level:
+    root: WARN
+    org.springframework: INFO
+    uk.co.mulecode.fileservice: DEBUG
+    org.springframework.boot.actuate.trace.http.HttpTraceRepository: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+application:
+  name: file-service-poc-test

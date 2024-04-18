@@ -1,0 +1,29 @@
+logging:
+  level:
+    root: WARN
+    org.springframework: INFO
+    uk.co.mulecode.fileservice: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+info:
+  app:
+    name: file-service-poc
+    description: v1
+
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /app
+
+spring:
+  messages:
+    basename: lang/messages
+
+application:
+  name: file-service-poc
