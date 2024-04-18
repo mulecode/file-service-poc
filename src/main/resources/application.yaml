@@ -27,3 +27,5 @@ spring:
 
 application:
   name: file-service-poc
+  features-flags:
+    enable-csv-file-validation: true
