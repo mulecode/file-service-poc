@@ -2,9 +2,13 @@ package uk.co.mulecode.fileservice.controller;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
+import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
+import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
 import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.stubs.IPApiStub;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -15,8 +19,13 @@ import static uk.co.mulecode.fileservice.utils.matchers.JsonSchemaValidatorResul
 @ActiveProfiles("test-csv-validation-disabled")
 class FileProcessorControllerValidationDisabledTest extends IntegrationTestBase {
 
+    @Autowired
+    private JsonMapper jsonMapper;
+
     @Test
     void processFile_InvalidCSVDisabledValidation_ReturnInternalServerError() throws Exception {
+
+        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
 
         String fileName = "data/entry_invalid.txt";
 

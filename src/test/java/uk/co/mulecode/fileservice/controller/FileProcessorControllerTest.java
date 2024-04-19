@@ -1,8 +1,12 @@
 package uk.co.mulecode.fileservice.controller;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
+import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
+import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
 import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.stubs.IPApiStub;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
@@ -13,8 +17,13 @@ import static uk.co.mulecode.fileservice.utils.matchers.JsonSchemaValidatorResul
 
 class FileProcessorControllerTest extends IntegrationTestBase {
 
+    @Autowired
+    private JsonMapper jsonMapper;
+
     @Test
     void processFile_ValidFile_ReturnOk() throws Exception {
+
+        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
 
         String fileName = "data/entry_valid.txt";
 
@@ -31,6 +40,8 @@ class FileProcessorControllerTest extends IntegrationTestBase {
 
     @Test
     void processFile_InvalidEmpty_ReturnBadRequest() throws Exception {
+
+        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
 
         String fileName = "data/entry_invalid_empty.txt";
 
