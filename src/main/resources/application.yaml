@@ -29,3 +29,5 @@ application:
   name: file-service-poc
   features-flags:
     enable-csv-file-validation: true
+  features-configs:
+    ip-verification-partner-url: http://ip-api.com/json/
