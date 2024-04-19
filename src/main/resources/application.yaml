@@ -39,6 +39,9 @@ spring:
   jpa:
     database: mysql
     show-sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         default_schema: sampledb
