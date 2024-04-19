@@ -43,5 +43,5 @@ public class HttpRequestEntity implements Serializable {
     private String requestIpProvider;
     @NotNull
     @Column(name = "timeLapsed")
-    private int timeLapsed;
+    private long timeLapsed;
 }
