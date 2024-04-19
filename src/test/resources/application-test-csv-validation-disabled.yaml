@@ -5,13 +5,7 @@ logging:
     uk.co.mulecode.fileservice: DEBUG
     org.springframework.boot.actuate.trace.http.HttpTraceRepository: DEBUG
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-
 application:
   name: file-service-poc-test
   features-flags:
-    enable-csv-file-validation: true
+    enable-csv-file-validation: false
