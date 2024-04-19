@@ -7,9 +7,9 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
 import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
+import uk.co.mulecode.fileservice.stubs.IPApiStub;
 import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
 import uk.co.mulecode.fileservice.utils.matchers.impl.HttpRequestEntityMatcher;
-import uk.co.mulecode.stubs.IPApiStub;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
