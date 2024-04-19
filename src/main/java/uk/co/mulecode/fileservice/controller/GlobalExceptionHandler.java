@@ -26,7 +26,7 @@ import static java.lang.String.format;
 
 @Slf4j
 @RequiredArgsConstructor
-@RestControllerAdvice("uk.co.mulecode.fileservice")
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private final MessageLookup messagesService;
