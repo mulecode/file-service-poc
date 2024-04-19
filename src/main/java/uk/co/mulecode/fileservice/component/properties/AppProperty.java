@@ -13,10 +13,18 @@ public class AppProperty {
 
     private String name;
     private FeaturesFlags featuresFlags;
+    private FeaturesConfigs featuresConfigs;
 
     @Getter
     @Setter
     public static class FeaturesFlags {
         private boolean enableCsvFileValidation;
     }
+
+    @Getter
+    @Setter
+    public static class FeaturesConfigs {
+        private String ipVerificationPartnerUrl;
+    }
+
 }
