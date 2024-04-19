@@ -8,6 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
 import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
 import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.utils.matchers.impl.HttpRequestEntityMatcher;
 import uk.co.mulecode.stubs.IPApiStub;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
@@ -22,16 +23,20 @@ class FileProcessorControllerValidationDisabledTest extends IntegrationTestBase 
     @Autowired
     private JsonMapper jsonMapper;
 
+    @Autowired
+    private HttpRequestEntityMatcher httpRequestEntityMatcher;
+
     @Test
     void processFile_InvalidCSVDisabledValidation_ReturnInternalServerError() throws Exception {
 
         IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
 
         String fileName = "data/entry_invalid.txt";
+        String requestIpAddress = getFaker().internet().ipV4Address();
 
         MockMultipartFile file = readFileAsMockMultipartFile(fileName);
 
-        getMvc().perform(multipart("/process/upload").file(file))
+        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr(requestIpAddress)))
                 .andExpect(status().isInternalServerError())
                 .andExpect(header().string("Content-type", "application/json"))
                 .andExpect(jsonPath("$").isMap())
@@ -42,5 +47,7 @@ class FileProcessorControllerValidationDisabledTest extends IntegrationTestBase 
                 .andExpect(jsonPath("$.path").value("/process/upload"))
                 .andExpect(jsonPath("$.timestamp").exists())
                 .andExpect(validateSchema("./data/schema/ErrorV1Response.json"));
+
+        httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
     }
 }

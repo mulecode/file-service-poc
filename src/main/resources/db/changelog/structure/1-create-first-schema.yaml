@@ -25,7 +25,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: requestUri
-                  type: text
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
@@ -35,22 +35,22 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: responseHttpCode
-                  type: bigint
+                  type: mediumint
                   constraints:
                     nullable: false
               - column:
                   name: requestIpAddress
-                  type: text
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
                   name: requestCountryCode
-                  type: text
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
                   name: requestIpProvider
-                  type: text
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
@@ -58,3 +58,9 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: false
+        - createIndex:
+            indexName: index_requestIpAddress
+            tableName: HttpRequest
+            columns:
+              - column:
+                  name: requestIpAddress

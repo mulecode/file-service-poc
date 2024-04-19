@@ -12,8 +12,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
 public class IPApiStub {
 
-    public static final String TEST_IP = "24.48.0.1";
-
     public static void stubSuccessApiResponse(String jsonBody) {
         stubFor(get(urlMatching("/json/(.*)\\?fields=66846719"))
                 .willReturn(aResponse()

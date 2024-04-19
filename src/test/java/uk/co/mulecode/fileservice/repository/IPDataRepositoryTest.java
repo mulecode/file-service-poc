@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.co.mulecode.fileservice.utils.matchers.impl.JsonSchemaValidatorMatcher.assertSchema;
-import static uk.co.mulecode.stubs.IPApiStub.TEST_IP;
 
 public class IPDataRepositoryTest extends IntegrationTestBase {
 
@@ -28,11 +27,12 @@ public class IPDataRepositoryTest extends IntegrationTestBase {
     @Test
     void getIPdata_apiConnection_ReturnData() {
 
+        String ipAddress = getFaker().internet().ipV4Address();
         final IPDataResponse ipDataResponse = givenOneObjectOf(IPDataResponse.class);
 
         IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(ipDataResponse));
 
-        final IPDataResponse iPdata = ipDataRepository.getIPdata(TEST_IP);
+        final IPDataResponse iPdata = ipDataRepository.getIPdata(ipAddress);
 
         assertNotNull(iPdata);
         assertSchema(jsonMapper.toJson(iPdata), "./data/schema/IPDataV1Response.json");
@@ -41,10 +41,11 @@ public class IPDataRepositoryTest extends IntegrationTestBase {
     @Test
     void getIPdata_apiConnectionError_ReturnError() {
 
+        String ipAddress = getFaker().internet().ipV4Address();
         IPApiStub.stubInternalServerApiResponse(jsonMapper.toJson(Map.of("error", "Internal server error")));
 
         HttpServerErrorException exception = assertThrows(HttpServerErrorException.class, () -> {
-            ipDataRepository.getIPdata(TEST_IP);
+            ipDataRepository.getIPdata(ipAddress);
         });
 
         assertEquals(500, exception.getStatusCode().value());
