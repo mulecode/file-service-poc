@@ -70,4 +70,31 @@ class FileProcessorControllerTest extends IntegrationTestBase {
         httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
     }
 
+    @Test
+    void processFile_InvalidIpOrigin_ReturnUnauthorized() throws Exception {
+
+        String requestIpAddress = getFaker().internet().ipV4Address();
+        final IPDataResponse ipDataResponse = givenOneObjectOf(IPDataResponse.class);
+        ipDataResponse.setCountryCode("US");
+
+        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(ipDataResponse));
+
+        String fileName = "data/entry_valid.txt";
+
+        MockMultipartFile file = readFileAsMockMultipartFile(fileName);
+
+        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr(requestIpAddress)))
+                .andExpect(status().isForbidden())
+                .andExpect(header().string("Content-type", "application/json"))
+                .andExpect(jsonPath("$").isMap())
+                .andExpect(jsonPath("$.message").value("GeoLocation Policy Rule - Request was forbidden"))
+                .andExpect(jsonPath("$.error").value("FORBIDDEN"))
+                .andExpect(jsonPath("$.status").value(403))
+                .andExpect(jsonPath("$.exception").value("uk.co.mulecode.policy.GeoLocationPolicyException"))
+                .andExpect(jsonPath("$.path").value("/process/upload"))
+                .andExpect(jsonPath("$.timestamp").exists())
+                .andExpect(validateSchema("./data/schema/ErrorV1Response.json"));
+
+        httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
+    }
 }
