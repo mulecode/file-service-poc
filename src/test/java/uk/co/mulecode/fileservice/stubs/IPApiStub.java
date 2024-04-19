@@ -1,4 +1,4 @@
-package uk.co.mulecode.stubs;
+package uk.co.mulecode.fileservice.stubs;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

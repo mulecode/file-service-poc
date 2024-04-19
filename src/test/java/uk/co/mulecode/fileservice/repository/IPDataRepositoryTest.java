@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.HttpServerErrorException;
 import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
 import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
+import uk.co.mulecode.fileservice.stubs.IPApiStub;
 import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
-import uk.co.mulecode.stubs.IPApiStub;
 
 import java.util.Map;
 
