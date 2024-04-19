@@ -11,6 +11,34 @@ management:
       exposure:
         include: health,info
 
+spring:
+  messages:
+    basename: lang/messages
+
+  liquibase:
+    contexts: dev
+    defaultSchema: sampledb
+    enabled: true
+    liquibaseSchema: public
+
+  datasource:
+    url: jdbc:h2:mem:sampledb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    database: H2
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        default_schema: sampledb
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.H2Dialect
+
 application:
   name: file-service-poc-test
   features-flags:
