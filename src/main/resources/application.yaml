@@ -25,6 +25,26 @@ spring:
   messages:
     basename: lang/messages
 
+  liquibase:
+    contexts: dev
+    defaultSchema: sampledb
+    enabled: true
+    liquibaseSchema: sampledb
+
+  datasource:
+    url: jdbc:mysql://sample-db/sampledb?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: false
+    properties:
+      hibernate:
+        default_schema: sampledb
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
 application:
   name: file-service-poc
   features-flags:

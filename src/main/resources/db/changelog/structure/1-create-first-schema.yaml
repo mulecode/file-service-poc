@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: rafael
+      comment: Create schema
+      context: dev
+      changes:
+        - sql:
+            comment: Create schema
+            sql: CREATE SCHEMA IF NOT EXISTS sampledb;
+  - changeSet:
+      id: 2
+      author: rafael
+      comment: Table for storing blocked http requests
+      context: dev
+      changes:
+        - createTable:
+            tableName: HttpRequest
+            columns:
+              - column:
+                  name: requestId
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: requestUri
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: requestTimestamp
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: responseHttpCode
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: requestIpAddress
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: requestCountryCode
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: requestIpProvider
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: timeLapsed
+                  type: bigint
+                  constraints:
+                    nullable: false
