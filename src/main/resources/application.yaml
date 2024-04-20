@@ -38,7 +38,7 @@ spring:
     liquibaseSchema: sampledb
 
   datasource:
-    url: jdbc:mysql://sample-db/sampledb?useSSL=false
+    url: jdbc:mysql://sample-db:3306/sampledb?useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -52,7 +52,7 @@ spring:
       hibernate:
         default_schema: sampledb
         ddl-auto: validate
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
 
 application:
   name: file-service-poc
