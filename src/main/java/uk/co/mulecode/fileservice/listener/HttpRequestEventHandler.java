@@ -1,4 +1,4 @@
-package uk.co.mulecode.fileservice.service;
+package uk.co.mulecode.fileservice.listener;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
