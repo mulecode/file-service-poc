@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+box "acme"
+    participant API
+    participant Interceptor
+    participant Service
+end box
+participant IPApi
+
+User -> API: Submit api request
+activate API
+API -> Interceptor: Pass request
+activate Interceptor
+Interceptor -> IPApi: Retrieve data by IP
+activate IPApi
+IPApi --> Interceptor: IP Data
+deactivate IPApi
+Interceptor -> Interceptor: Policy Rules
+alt "is request allowed"
+    Interceptor -> Service: Pass request
+    activate Service
+    Service --> Interceptor: Request processed
+    deactivate Service
+    Interceptor --> API: Response 200
+    else
+    Interceptor -[#red]-> API: Access Forbidden 403
+end
+deactivate Interceptor
+API --> User: Return JSON response
+deactivate API
+
+@enduml
