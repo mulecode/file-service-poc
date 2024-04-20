@@ -23,9 +23,12 @@ class IPBlockingPolicyConfigTest extends IntegrationTestBase {
                 testBuilder("CN", "AT&T", true),
                 testBuilder("ES", "AT&T", true),
                 testBuilder("US", "AT&T", true),
+                testBuilder(null, "AT&T", true),
                 testBuilder("UK", "AWS", true),
                 testBuilder("UK", "GCP", true),
                 testBuilder("UK", "Azure", true),
+                testBuilder("UK", null, true),
+                testBuilder(null, null, true),
                 testBuilder("BR", "Atlantic Broadband", false),
                 testBuilder("UK", "Google Fiber", false),
                 testBuilder("IT", "AT&T", false)

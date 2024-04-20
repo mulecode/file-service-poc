@@ -41,7 +41,11 @@ run_docker: ## Run
 run: PORT = 9090
 run: JAR_FILE = ./target/file-service-poc-0.0.1-SNAPSHOT.jar
 run: ## Run
-	@docker-compose run -p $(PORT):8080 java -jar $(JAR_FILE)
+	@docker compose run -p $(PORT):8080 java -jar $(JAR_FILE)
+
+.PHONY: run_with_mysql
+run_with_mysql: ## Run with mysql
+	@docker compose -f docker-compose-mysql.yaml up --build
 
 ####################################################################################
 ##@ Utils

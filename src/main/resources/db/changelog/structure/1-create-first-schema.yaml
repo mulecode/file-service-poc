@@ -25,7 +25,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: requestUri
-                  type: varchar
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
@@ -40,17 +40,17 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: requestIpAddress
-                  type: varchar
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
                   name: requestCountryCode
-                  type: varchar
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
                   name: requestIpProvider
-                  type: varchar
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
