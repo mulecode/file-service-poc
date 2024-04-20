@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+box "acme"
+    participant API
+    participant Interceptor
+    participant Service
+    database Database
+end box
+participant IPApi
+
+
+User -> API: Request
+activate API
+API -> Interceptor: Pass request
+activate Interceptor
+Interceptor -> IPApi: Retrieve data by IP
+activate IPApi
+IPApi --> Interceptor: IP Data
+deactivate IPApi
+
+Interceptor -> Service: Pass request
+activate Service
+Service --> Interceptor: Request fulfilled
+deactivate Service
+Interceptor --> API: Response\n(StatusCode)
+
+API --> User: Response
+deactivate API
+
+Interceptor -->> Service: save request and IpData\n(Async event)
+deactivate Interceptor
+activate Service
+Service -> Database: httpRequest record
+activate Database
+Database --> Service: saved
+deactivate Database
+deactivate Service
+@enduml

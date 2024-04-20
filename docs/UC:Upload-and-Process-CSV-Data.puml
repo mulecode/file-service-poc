@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+box "acme"
+    participant API
+    participant Service
+end box
+
+User -> API: Submit CSV file
+activate API
+API -> Service: Process CSV file
+activate Service
+Service --> API: Processed Json file
+deactivate Service
+API --> User: Return JSON response
+deactivate API
+@enduml
