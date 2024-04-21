@@ -26,10 +26,6 @@ test: ## Maven Test
 install: ## Maven Install
 	$(COMPOSE_RUN_MVN) install
 
-.PHONY: integration_test
-integration_test: ## Maven Install
-	$(COMPOSE_RUN_MVN) clean install -Pintegration-lite-first
-
 ####################################################################################
 ##@ Running
 ####################################################################################
