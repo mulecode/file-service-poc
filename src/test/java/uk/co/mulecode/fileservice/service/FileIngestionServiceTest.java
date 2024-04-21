@@ -5,7 +5,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 class FileIngestionServiceTest extends IntegrationTestBase {
 

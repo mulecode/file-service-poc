@@ -8,11 +8,9 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
-;
-
 public class IPApiStub {
 
-    public static void stubSuccessApiResponse(String jsonBody) {
+    private static void stubSuccessApiResponse(String jsonBody) {
         stubFor(get(urlMatching("/json/(.*)\\?fields=66846719"))
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
@@ -20,7 +18,7 @@ public class IPApiStub {
                         .withBody(jsonBody)));
     }
 
-    public static void stubInternalServerApiResponse(String jsonBody) {
+    private static void stubInternalServerApiResponse(String jsonBody) {
         stubFor(get(urlMatching("/json/(.*)\\?fields=66846719"))
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())

@@ -1,15 +1,13 @@
-package uk.co.mulecode.fileservice.utils.matchers.impl;
+package uk.co.mulecode.fileservice.test.matchers.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import uk.co.mulecode.fileservice.repository.HttpRequestRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-@Profile("test")
 @Component
 @RequiredArgsConstructor
 public class HttpRequestEntityMatcher {

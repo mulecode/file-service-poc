@@ -20,10 +20,9 @@ clean: ## Maven Clean
 
 .PHONY: test
 test: ## Maven Test
-	$(COMPOSE_RUN_MVN) test
+	$(COMPOSE_RUN_MVN) clean test -Dtest="uk/co/mulecode/fileservice/$(PACKAGE)"
 
 .PHONY: install
-install: clean
 install: ## Maven Install
 	$(COMPOSE_RUN_MVN) install
 

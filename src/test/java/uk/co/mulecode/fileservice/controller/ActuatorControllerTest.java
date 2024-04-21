@@ -1,13 +1,13 @@
 package uk.co.mulecode.fileservice.controller;
 
 import org.junit.jupiter.api.Test;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static uk.co.mulecode.fileservice.utils.matchers.JsonSchemaValidatorResultMatcher.validateSchema;
+import static uk.co.mulecode.fileservice.test.matchers.JsonSchemaValidatorResultMatcher.validateSchema;
 
 class ActuatorControllerTest extends IntegrationTestBase {
 

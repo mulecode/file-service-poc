@@ -23,7 +23,7 @@ public final class IPDataRepository {
         log.debug("Getting IP data for {}", ip);
         final String ipVerificationPartnerUrl = appProperty.getFeaturesConfigs().getIpVerificationPartnerUrl();
         final String url = format("%s%s?fields=%s", ipVerificationPartnerUrl, ip, ALL_FIELDS_VALUE);
-        log.debug("Making API call IP data to url: {}", url);
+        log.info("Making API call IP data to url: {}", url);
         final IPDataResponse response = restTemplate.getForObject(url, IPDataResponse.class);
         log.debug("IP data response: {}", response);
         return response;

@@ -5,16 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.HttpServerErrorException;
 import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
 import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
-import uk.co.mulecode.fileservice.stubs.IPApiStub;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
-
-import java.util.Map;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static uk.co.mulecode.fileservice.utils.matchers.impl.JsonSchemaValidatorMatcher.assertSchema;
+import static uk.co.mulecode.fileservice.test.matchers.impl.JsonSchemaValidatorMatcher.assertSchema;
 
 public class IPDataRepositoryTest extends IntegrationTestBase {
 
@@ -27,10 +24,7 @@ public class IPDataRepositoryTest extends IntegrationTestBase {
     @Test
     void getIPdata_apiConnection_ReturnData() {
 
-        String ipAddress = getFaker().internet().ipV4Address();
-        final IPDataResponse ipDataResponse = givenOneObjectOf(IPDataResponse.class);
-
-        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(ipDataResponse));
+        String ipAddress = "200.0.0.0";
 
         final IPDataResponse iPdata = ipDataRepository.getIPdata(ipAddress);
 
@@ -41,8 +35,7 @@ public class IPDataRepositoryTest extends IntegrationTestBase {
     @Test
     void getIPdata_apiConnectionError_ReturnError() {
 
-        String ipAddress = getFaker().internet().ipV4Address();
-        IPApiStub.stubInternalServerApiResponse(jsonMapper.toJson(Map.of("error", "Internal server error")));
+        String ipAddress = "500.0.0.0";
 
         HttpServerErrorException exception = assertThrows(HttpServerErrorException.class, () -> {
             ipDataRepository.getIPdata(ipAddress);
