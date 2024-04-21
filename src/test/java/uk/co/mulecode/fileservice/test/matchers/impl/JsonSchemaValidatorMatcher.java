@@ -1,4 +1,4 @@
-package uk.co.mulecode.fileservice.utils.matchers.impl;
+package uk.co.mulecode.fileservice.test.matchers.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

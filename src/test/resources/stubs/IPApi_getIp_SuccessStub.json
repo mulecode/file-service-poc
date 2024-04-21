@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/json/200.0.0.([0-9]*)\\?fields=66846719"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "status": "success",
+      "continent": "Europe",
+      "continentCode": "EU",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "region": "England",
+      "regionName": "England",
+      "city": "London",
+      "district": "Westminster",
+      "zip": "SW1A",
+      "lat": 51.5074,
+      "lon": -0.1278,
+      "timezone": "Europe/London",
+      "offset": 0,
+      "currency": "GBP",
+      "isp": "OpenAI",
+      "org": "OpenAI",
+      "as": "AS12345",
+      "asname": "OpenAI-AS",
+      "reverse": "london.openai.com",
+      "mobile": false,
+      "proxy": false,
+      "hosting": false,
+      "query": "20.0.0.0"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

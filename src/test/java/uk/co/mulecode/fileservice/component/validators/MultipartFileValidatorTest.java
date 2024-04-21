@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import uk.co.mulecode.fileservice.component.validators.patterns.RegexPatterns;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import java.util.regex.Pattern;
 import java.util.stream.Stream;

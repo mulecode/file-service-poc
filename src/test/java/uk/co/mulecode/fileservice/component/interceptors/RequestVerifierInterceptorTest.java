@@ -10,7 +10,7 @@ import uk.co.mulecode.fileservice.component.event.EventProducer;
 import uk.co.mulecode.fileservice.component.event.dto.HttpRequestEvent;
 import uk.co.mulecode.fileservice.repository.IPDataRepository;
 import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

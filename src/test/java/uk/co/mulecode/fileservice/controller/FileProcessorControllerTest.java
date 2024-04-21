@@ -4,17 +4,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import uk.co.mulecode.fileservice.component.mappers.JsonMapper;
-import uk.co.mulecode.fileservice.repository.dto.IPDataResponse;
-import uk.co.mulecode.fileservice.stubs.IPApiStub;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
-import uk.co.mulecode.fileservice.utils.matchers.impl.HttpRequestEntityMatcher;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.matchers.impl.HttpRequestEntityMatcher;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static uk.co.mulecode.fileservice.utils.matchers.JsonSchemaValidatorResultMatcher.validateSchema;
+import static uk.co.mulecode.fileservice.test.matchers.JsonSchemaValidatorResultMatcher.validateSchema;
 
 class FileProcessorControllerTest extends IntegrationTestBase {
 
@@ -27,14 +25,11 @@ class FileProcessorControllerTest extends IntegrationTestBase {
     @Test
     void processFile_ValidFile_ReturnOk() throws Exception {
 
-        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
-
         String fileName = "data/entry_valid.txt";
-        String requestIpAddress = getFaker().internet().ipV4Address();
 
         MockMultipartFile file = readFileAsMockMultipartFile(fileName);
 
-        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr(requestIpAddress)))
+        getMvc().perform(multipart("/process/upload").file(file).file(file).with(remoteAddr("200.0.0.0")))
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-type", "application/octet-stream"))
                 .andExpect(header().string("Content-Disposition", "form-data; name=\"attachment\"; filename=\"OutcomeFile.json\""))
@@ -42,20 +37,17 @@ class FileProcessorControllerTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(validateSchema("./data/schema/OutcomeV1Response.json"));
 
-        httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
+        httpRequestEntityMatcher.assertExistsByRequestIpAddress("200.0.0.0");
     }
 
     @Test
     void processFile_InvalidEmpty_ReturnBadRequest() throws Exception {
 
-        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(givenOneObjectOf(IPDataResponse.class)));
-
         String fileName = "data/entry_invalid_empty.txt";
-        String requestIpAddress = getFaker().internet().ipV4Address();
 
         MockMultipartFile file = readFileAsMockMultipartFile(fileName);
 
-        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr(requestIpAddress)))
+        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr("200.0.0.1")))
                 .andExpect(status().isBadRequest())
                 .andExpect(header().string("Content-type", "application/json"))
                 .andExpect(jsonPath("$").isMap())
@@ -67,23 +59,17 @@ class FileProcessorControllerTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$.timestamp").exists())
                 .andExpect(validateSchema("./data/schema/ErrorV1Response.json"));
 
-        httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
+        httpRequestEntityMatcher.assertExistsByRequestIpAddress("200.0.0.1");
     }
 
     @Test
     void processFile_InvalidIpOrigin_ReturnUnauthorized() throws Exception {
 
-        String requestIpAddress = getFaker().internet().ipV4Address();
-        final IPDataResponse ipDataResponse = givenOneObjectOf(IPDataResponse.class);
-        ipDataResponse.setCountryCode("US");
-
-        IPApiStub.stubSuccessApiResponse(jsonMapper.toJson(ipDataResponse));
-
         String fileName = "data/entry_valid.txt";
 
         MockMultipartFile file = readFileAsMockMultipartFile(fileName);
 
-        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr(requestIpAddress)))
+        getMvc().perform(multipart("/process/upload").file(file).with(remoteAddr("403.0.0.0")))
                 .andExpect(status().isForbidden())
                 .andExpect(header().string("Content-type", "application/json"))
                 .andExpect(jsonPath("$").isMap())
@@ -95,6 +81,6 @@ class FileProcessorControllerTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$.timestamp").exists())
                 .andExpect(validateSchema("./data/schema/ErrorV1Response.json"));
 
-        httpRequestEntityMatcher.assertExistsByRequestIpAddress(requestIpAddress);
+        httpRequestEntityMatcher.assertExistsByRequestIpAddress("403.0.0.0");
     }
 }

@@ -1,9 +1,9 @@
-package uk.co.mulecode.fileservice.utils.matchers;
+package uk.co.mulecode.fileservice.test.matchers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
-import uk.co.mulecode.fileservice.utils.matchers.impl.JsonSchemaValidatorMatcher;
+import uk.co.mulecode.fileservice.test.matchers.impl.JsonSchemaValidatorMatcher;
 
 @Slf4j
 public class JsonSchemaValidatorResultMatcher implements ResultMatcher {

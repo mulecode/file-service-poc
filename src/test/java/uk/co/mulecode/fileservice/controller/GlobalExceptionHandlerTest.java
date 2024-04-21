@@ -18,7 +18,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import uk.co.mulecode.fileservice.component.utils.ClockUtils;
 import uk.co.mulecode.fileservice.controller.dto.ErrorResponse;
 import uk.co.mulecode.fileservice.exception.ApplicationException;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import java.util.Iterator;
 import java.util.List;

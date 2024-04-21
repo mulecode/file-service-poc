@@ -10,7 +10,7 @@ import uk.co.mulecode.fileservice.component.event.dto.HttpRequestEvent;
 import uk.co.mulecode.fileservice.component.mappers.HttpRequestEntityMapper;
 import uk.co.mulecode.fileservice.repository.HttpRequestRepository;
 import uk.co.mulecode.fileservice.repository.dto.HttpRequestEntity;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import java.util.UUID;
 

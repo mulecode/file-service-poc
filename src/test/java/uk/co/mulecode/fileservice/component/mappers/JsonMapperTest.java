@@ -3,7 +3,7 @@ package uk.co.mulecode.fileservice.component.mappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.co.mulecode.fileservice.model.PersonTransportationDto;
-import uk.co.mulecode.fileservice.utils.IntegrationTestBase;
+import uk.co.mulecode.fileservice.test.IntegrationTestBase;
 
 import static com.jayway.jsonpath.JsonPath.read;
 import static org.junit.jupiter.api.Assertions.assertEquals;

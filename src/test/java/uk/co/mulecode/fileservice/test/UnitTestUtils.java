@@ -1,4 +1,4 @@
-package uk.co.mulecode.fileservice.utils;
+package uk.co.mulecode.fileservice.test;
 
 import com.github.javafaker.Faker;
 import jakarta.validation.ConstraintViolation;
@@ -7,7 +7,9 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import lombok.Getter;
 import org.jeasy.random.EasyRandom;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -69,5 +71,15 @@ public class UnitTestUtils {
     public MockMultipartFile readFileAsMockMultipartFile(String fileName) throws IOException {
         byte[] fileContent = readFileAsBytes(fileName);
         return new MockMultipartFile("file", fileName, "text/plain", fileContent);
+    }
+
+    public RequestPostProcessor remoteAddr(final String remoteAddr) {
+        return new RequestPostProcessor() {
+            @Override
+            public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
+                request.setRemoteAddr(remoteAddr);
+                return request;
+            }
+        };
     }
 }

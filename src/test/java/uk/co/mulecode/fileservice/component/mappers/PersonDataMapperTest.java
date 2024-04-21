@@ -2,7 +2,7 @@ package uk.co.mulecode.fileservice.component.mappers;
 
 import org.junit.jupiter.api.Test;
 import uk.co.mulecode.fileservice.model.PersonDataIngestionDto;
-import uk.co.mulecode.fileservice.utils.UnitTestUtils;
+import uk.co.mulecode.fileservice.test.UnitTestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

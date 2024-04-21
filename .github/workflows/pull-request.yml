@@ -12,7 +12,18 @@ jobs:
 
   java_test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: "component/**"
+          - package: "config/**"
+          - package: "controller/**"
+          - package: "listener/**"
+          - package: "repository/**"
+          - package: "service/**"
+          - package: "RunCucumberTest.java"
     steps:
       - uses: actions/checkout@v4
-      - name: Java Test
-        run: make test
+      - name: ${{ matrix.package }} Test
+        run: make test PACKAGE="${{ matrix.package }}"

@@ -3,7 +3,7 @@ package uk.co.mulecode.fileservice.component.mappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockMultipartFile;
 import uk.co.mulecode.fileservice.model.PersonDataIngestionDto;
-import uk.co.mulecode.fileservice.utils.UnitTestUtils;
+import uk.co.mulecode.fileservice.test.UnitTestUtils;
 
 import java.util.List;
 import java.util.UUID;

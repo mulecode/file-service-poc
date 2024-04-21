@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/json/500.0.0.0?fields=66846719"
+  },
+  "response": {
+    "status": 500,
+    "jsonBody": {
+      "error": "Internal server error"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
