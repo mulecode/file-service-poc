@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import uk.co.mulecode.fileservice.repository.HttpRequestRepository;
 
 @Getter
 @ActiveProfiles("test")
@@ -30,6 +31,9 @@ public class IntegrationTestBase extends UnitTestUtils {
     @Getter
     private WireMockServer wireMockServer;
 
+    @Autowired
+    private HttpRequestRepository httpRequestRepository;
+
     @BeforeEach
     public void setup() {
         mvc = MockMvcBuilders
@@ -39,6 +43,7 @@ public class IntegrationTestBase extends UnitTestUtils {
 
     @AfterEach
     void afterEach() {
+        httpRequestRepository.deleteAll();
     }
 
 }
