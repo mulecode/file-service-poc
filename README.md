@@ -82,6 +82,13 @@ make run
 
 The project will run via docker in a secured java environment and will be available on port 9090
 
+Alternatively, you can run the project via docker compose shipped with mysql; the command bellow uses Dockerfile to
+build the project before spinning up the containers
+
+```bash
+make run_with_mysql
+```
+
 ---
 
 ### Testing the project running via health endpoint
