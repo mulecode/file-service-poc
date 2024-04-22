@@ -12,12 +12,16 @@ This feature involves allowing users to upload a CSV file via a REST API endpoin
 uploaded file and returning a mapped representation of the data in JSON format to the user.
 At the moment, this feature restricts the file size to 1MB and only accepts CSV files in a specific format.
 
+This feature also implements a validation mechanism to ensure the uploaded file is in the correct format and adheres to
+the specified rules.
+If the file does not meet the requirements, the system returns an error
+
+![](./docs/img/UC:Upload-and-Process-CSV-Data.svg)
+
 **Future Enchantments**
 
 - Allow ingesting of different CSV files formats with difference processing rules.
 - Implement an Asynchronous processing mechanism to handle large files and long processing times.
-
-![](./docs/img/UC:Upload-and-Process-CSV-Data.svg)
 
 #### 2. Geo-Location Request Blocking Requests (Security Feature)
 
